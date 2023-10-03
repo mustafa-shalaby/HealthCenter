@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title Center>Health Center | Your Profile</title>
+    <link rel="icon" href="./images/webs-logo.png" type="image/png">
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="Tooplate">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="css/tooplate-style.css">
+
+
+
+</head>
+
+
+
+
+<body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+
+    <!-- PRE LOADER -->
+    <section class="preloader">
+        <div class="spinner">
+
+            <span class="spinner-rotate"></span>
+
+        </div>
+    </section>
+
+
+
+
+    <!-- MENU -->
+    <section class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="container">
+
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                </button>
+
+                <!-- lOGO TEXT HERE -->
+                <a href="/returntohome" method="POST" class="navbar-brand"><i class="fa fa-h-square"></i>ealth Center</p></a>
+
+            </div>
+
+            <!-- MENU LINKS -->
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="menuhover">
+                        <% if (typeof usern !== 'undefined' ) { %>
+                            <a href="/userprofile" class="smoothScroll">
+                                <%= usern %>
+                            </a>
+                            <%} else {}%>
+                    </li>
+                    <li class="menuhover"><a href="/returntohome" class="smoothScroll">Home</a></li>
+                    <li class="menuhover">
+                        <a href="#news" class="smoothScroll">
+                            <% if (typeof tests !== 'undefined' || typeof logos !== 'undefined') { %>
+                                <i class="fa fa-bell-o" style="color: #bd182e; font-size: 15px;"></i>
+                                <% } %>
+                                    Latest Updates</a>
+                    </li>
+                    <li class="menuhover"><a href="#google-map" class="smoothScroll">Contact</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- NEWS -->
+    <section id="news" data-stellar-background-ratio="2.5">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-12 col-sm-12">
+                    <!-- SECTION TITLE -->
+                    <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
+                        <h2>Latest Profile Updates</h2>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-6">
+                    <!-- NEWS THUMB -->
+                    <div class="news-thumb wow fadeInUp" data-wow-delay="0.7s">
+                        <a href="news-detail.html">
+                            <img src="images/profile-image1.jpeg" class="img-responsive" alt="">
+                        </a>
+                        <div class="news-info">
+                            <h3><a href="#reports" class="smoothScroll">Review and Check Your Test Results </a>
+                                <% if (typeof tests !== 'undefined') { %>
+                                    <i class="fa fa-exclamation-circle" style="color: #bd182e; font-size: 19px;"> </i>
+                                    <% } %>
+                            </h3>
+                            <p>Check Your Received DNA Reports that you have made on our Center from your home so no need to wait to have them just check your email</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 col-sm-6">
+                    <!-- NEWS THUMB -->
+                    <div class="news-thumb wow fadeInUp" data-wow-delay="0.6s">
+                        <a href="news-detail.html">
+                            <img src="images/profile-image.jpg" class="img-responsive" alt="">
+                        </a>
+                        <div class="news-info">
+                            <h3><a href="#online" class="smoothScroll">Make an Online DNA Test</a>
+                                <% if (typeof logos !== 'undefined') { %>
+                                    <i class="fa fa-exclamation-circle" style="color: #bd182e; font-size: 19px;"> </i>
+                                    <% } %>
+                            </h3>
+                            <p>Our Website provide an Online test to check if two DNA profiles are related by looking through the short tandem repeats of your DNA (strs) .</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="reports" data-stellar-background-ratio="2.5">
+        <div class="container">
+            <div class="row">
+                <div class="news-info">
+
+                    <h2><a>Review and Check Your Test Results</a> <i class="fa fa-envelope" style="color: #bd182e; font-size: 29px;"> </i></h2>
+                    <% if (typeof tests !== 'undefined' && typeof results !== 'undefined') { %>
+                        <h3>You have received new emails on your inbox <i class="fa fa-eye" style="color: #bd182e; font-size: 20px;"> </i></h3>
+
+                        <audio src="audio/notify.mp3" id="audio1" controls style="display: none;"></audio>
+                        <button type="button" onclick="playaudio();" class="btn btn-info" data-toggle="collapse" data-target="#demo">Show Email</button>
+
+
+                        <div id="demo" class="collapse">
+                            <br>
+                            <p>Dear
+                                <%= tests.name %>,
+                            </p>
+                            <p>We hope you are doing well.</p>
+                            <p>sincerely we inform you that the test you have made on
+                                <%= tests.date %> by
+                                    <%= tests.department %> department has showed that you and the legit son are genetically
+                                        <%= results.testresult %> like a biological father and a son upon the given samples of two of you that you have provided showed you and the legit son share the same short tandem repeats and they are :
+                            </p>
+                            <p style="background-color: rgb(232, 235, 226); word-break: break-all;">
+                                <%= results.shorttandem %>
+                            </p>
+
+                            <% } else { %>
+                                <h3>You have no new received emails or Reports <i class="fa fa-eye-slash" style="color: #bd182e; font-size: 20px;"> </i></h3>
+                                <% }  %>
+                        </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+
+
+    <br><br><br><br><br><br><br><br>
+
+
+    <section id="online" data-stellar-background-ratio="2.5">
+        <div class="container">
+            <div class="row">
+                <div class="news-info">
+
+                    <h2><a> Make a Quick Online DNA Test  </a> <i class="fa fa-bar-chart" style="color: #bd182e; font-size: 29px;">  </i></h2>
+                    <h3>Just Upload the Files containing 13 CODIS <i class="fa fa-cloud-upload" style="color: #bd182e; font-size: 20px;"> </i></h3>
+
+
+                    <form id="checkDNA-form" action="/uploaddnafile" method="POST" enctype="multipart/form-data">
+
+                        <!-- SECTION TITLE -->
+                        <br><br>
+
+                        <div class="wow fadeInUp " data-wow-delay="0.8s" enctype="multipart/form-data">
+                            <div class="col-md-6 col-sm-6">
+                                <label for="dadfile">Upload Father's File</label>
+                                <input type="file" class="form-control" id="fatherfile" name="fatherfile" placeholder="Upload File" required>
+                            </div>
+
+                            <div class="col-md-6 col-sm-6 ">
+                                <label for="sonfile">Upload legit Son's File</label>
+                                <input type="file" class="form-control" id="sonfile" name="sonfile" placeholder="Upload File" required>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12 ">
+                                <br>
+                                <button type="submit" class="form-control" id="cf-submit">Submit Button</button>
+                                <br><br>
+                            </div>
+                        </div>
+                    </form>
+
+                    <h3>OR</h3>
+
+                    <br>
+
+                    <h3>Paste the 13 CODIS for each One in its textarea <i class="fa fa-clipboard" style="color: #bd182e; font-size: 20px;"> </i></h3>
+
+                    <form id="checkDNAtext-form" action="/pastednatext" method="POST" enctype="multipart/form-data">
+
+                        <!-- SECTION TITLE -->
+                        <div class="wow fadeInUp " data-wow-delay="0.8s">
+                            <div class="col-md-6 col-sm-6 ">
+                                <br>
+
+                                <label for="text1">Paste the Father's DNA Text </label>
+                                <textarea class="form-control" rows="5" id="fathertext" name="fathertext" placeholder="Paste text" required></textarea>
+                            </div>
+
+                            <div class="col-md-6 col-sm-6 ">
+                                <br>
+                                <label for="text2">Paste the legit Son's DNA Text </label>
+                                <textarea class="form-control" rows="5" id="sontext" name="sontext" placeholder="Paste text" required></textarea>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12 ">
+                                <br><br>
+
+                                <button type="submit" class="form-control" id="cf-submit">Submit Button</button>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        </div>
+    </section>
+
+
+    <section id="appointment" data-stellar-background-ratio="3">
+        <div class="container">
+            <div class="row">
+                <div class="news-info">
+
+                    <% if (typeof logos !== 'undefined') { %>
+
+                        <h3>Your DNA Test Report are ready <i class="fa fa-bar-chart" style="color: #bd182e; font-size: 22px;">  </i></h3>
+                        <button type="button" onclick="dynamicUrl();" class="btn btn-info" data-toggle="collapse" data-target="#redemo">Show Test Result</button>
+
+                        <div id="redemo" class="collapse">
+
+                            <br>
+                            <p>
+                                - TO make sure the report tells you the two provided samples are related , you should make sure the spots on the loci chromosome on the legit father and the legit son are the same at the same index, location, Short tandem repeats (STRs) and number of
+                                repeats :
+                            </p>
+
+                            <p>
+                                - The words on th spots and the Loci DNA of both perons provided samples are the STRs , the index of STRs and the number of repeated STRs
+                            </p>
+
+                            <p>
+                                - One little different spot with a different index , STRs letters and number of repeated STRs on the two loci chromosome the report informs that they are not related
+                            </p>
+
+                            <br>
+
+                            <iframe id="resultreload" src="" height="110px" width="800px" style="border:none;  " scrolling="no" frameborder="0" title="Iframe Example"> </iframe>
+
+                            <br><br>
+
+                            <div class="col-md-14 col-sm-14" class="img-rounded zoom">
+                                <img id="imagereload" src="" class="img-responsive" alt="Result Graph image ">
+
+                                <button type="button" class="btn btn-info"><a href="images/Result_Graph.jpg" download="DNA Test ">Download Test Image</a></button>
+                                <button type="button" class="btn btn-info"><a href="script/Result_PDF.pdf" download="DNA Test report ">Download Test Report PDF</a></button>
+                            </div>
+
+
+                            <% } %>
+                        </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <br><br><br><br>
+
+    <section id=" reports " data-stellar-background-ratio="2.5 ">
+        <div class="container ">
+            <div class="row ">
+                <div class="news-info ">
+
+                    <h2 class="wow fadeInUp " data-wow-delay="0.2s "><a>Reach us Through Google maps </a> <i class=" fa fa-map-marker " style="color: #bd182e; font-size: 29px; "> </i></h2>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- GOOGLE MAP -->
+    <section id="google-map ">
+        <!-- How to change your own map point
+            1. Go to Google Maps
+            2. Click on your location point
+            3. Click "Share " and choose "Embed map " tab
+            4. Copy only URL and paste it within the src=" " field below
+	-->
+
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d156242.99553405086!2d31.253729748541932!3d30.079432241300598!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x27b0c5de6e94f43!2sCairo%20health%20care!5e0!3m2!1sen!2seg!4v1621837733318!5m2!1sen!2seg "
+            width="100% " height="350 " frameborder="0 " style="border:0 " allowfullscreen></iframe>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer data-stellar-background-ratio="5 ">
+        <div class="container ">
+            <div class="row ">
+
+                <div class="col-md-4 col-sm-4 ">
+                    <div class="footer-thumb ">
+                        <h4 class="wow fadeInUp " data-wow-delay="0.4s ">Contact Info <i class=" fa fa-phone " style="color: #bd182e; font-size: 20px; "> </i></h4>
+                        <p>Our Dear Clients we are happy to be in contact with you 24/7 by .</p>
+
+                        <div class="contact-info ">
+                            <p><i class="fa fa-phone "></i> 010-070-0170</p>
+                            <p><i class="fa fa-envelope-o "></i> <a href="# ">EgyGene@healthcare.com</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-4 ">
+                    <div class="footer-thumb ">
+                        <h4 class="wow fadeInUp " data-wow-delay="0.4s ">Latest News <i class=" fa fa-newspaper-o " style="color: #bd182e; font-size: 20px; "> </i></h4>
+                        <div class="latest-stories ">
+                            <div class="stories-image ">
+                                <a href="# "><img src="images/news-image1.jpg " class="img-responsive " alt=" "></a>
+                            </div>
+                            <div class="stories-info ">
+                                <a href="# ">
+                                    <h5>Amazing Technology</h5>
+                                </a>
+                                <span>March 08, 2018</span>
+                            </div>
+                        </div>
+
+                        <div class="latest-stories ">
+                            <div class="stories-image ">
+                                <a href="# "><img src="images/news-image.jpg " class="img-responsive " alt=" "></a>
+                            </div>
+                            <div class="stories-info ">
+                                <a href="# ">
+                                    <h5>New Healing Process</h5>
+                                </a>
+                                <span>February 20, 2021</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-4 ">
+                    <div class="footer-thumb ">
+                        <div class="opening-hours ">
+                            <h4 class="wow fadeInUp " data-wow-delay="0.4s ">Opening Hours <i class=" fa fa-briefcase " style="color: #bd182e; font-size: 20px; "> </i></h4>
+                            <p>Monday - Friday <span>06:00 AM - 10:00 PM</span></p>
+                            <p>Saturday <span>09:00 AM - 08:00 PM</span></p>
+                            <p>Sunday <span>Closed</span></p>
+                        </div>
+
+                        <ul class="social-icon ">
+                            <li>
+                                <a href="https://www.facebook.com/ " class="fa fa-facebook-square " attr="facebook icon "></a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/explore " class="fa fa-twitter "></a>
+                            </li>
+                            <li>
+                                <a href="https://www.instagram.com/ " class="fa fa-instagram "></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-12 col-sm-12 border-top ">
+                    <div class="col-md-4 col-sm-6 ">
+                        <div class="copyright-text ">
+                            <p>Copyright &copy; 2018 Your Company | Design: Tooplate</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 ">
+                        <div class="footer-link ">
+                            <a href="# ">Laboratory Tests</a>
+                            <a href="# ">Departments</a>
+                            <a href="# ">Insurance Policy</a>
+                            <a href="# ">Careers</a>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-2 text-align-center ">
+                        <div class="angle-up-btn ">
+                            <a href="#top " class="smoothScroll wow fadeInUp " data-wow-delay="1.2s "><i class="fa fa-angle-up "></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+
+
+
+    <script src="js/jquery.js "></script>
+    <script src="js/main.js "></script>
+    <script src="js/bootstrap.min.js "></script>
+    <script src="js/jquery.sticky.js "></script>
+    <script src="js/jquery.stellar.min.js "></script>
+    <script src="js/wow.min.js "></script>
+    <script src="js/smoothscroll.js "></script>
+    <script src="js/owl.carousel.min.js "></script>
+    <script src="js/custom.js "></script>
+
+    <script>
+        function playaudio() {
+            document.getElementById("audio1 ").play();
+        }
+    </script>
+
+    <script>
+        function dynamicUrl() {
+            var url1 = "script/test_result_file.txt";
+            var para = document.getElementById('resultreload');
+            para.src = url1;
+
+
+            var url = "images/Result_Graph.jpg";
+            var img = document.getElementById('imagereload');
+            img.src = url;
+
+
+        }
+    </script>
+
+
+</body>
+
+</html>
